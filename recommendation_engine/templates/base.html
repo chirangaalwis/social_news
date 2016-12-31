@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<!-- This is a base template for all authenticated pages of the web application. -->
+<head>
+    <title>SocialNews - {% block page-title %}Your Favorite News{% endblock %}</title>
+</head>
+
+<body>
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block bootstrap3_content %}
+
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'recommendation_engine:frontpage' %}">SocialNews</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/recommendation_engine/about/">About</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="/recommendation_engine/profile/">My Profile</a></li>
+                <li><a href="/recommendation_engine/logout/">Logout</a></li>
+                {% else %}
+                <li><a href="/recommendation_engine/register/">Sign-Up</a></li>
+                <li><a href="/recommendation_engine/login/">Sign-In</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <h1>{% block title %}{% endblock %}</h1>
+
+    {% bootstrap_messages %}
+
+    <div>
+        {% block content %}{% endblock %}
+    </div>
+</div>
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block page-title %}Sign-Up{% endblock %}
+
+{% block title %}SocialNews | Sign-Up{% endblock %}
+
+{% block content %}
+
+{% if registered %}
+<strong>You are already signed-up!</strong>
+<a href="/recommendation_engine/">Return to the homepage.</a><br/>
+{% else %}
+<form id="user_form" method="post" action="/recommendation_engine/register/">
+
+    {% csrf_token %}
+
+    {{ user_form.as_p }}
+
+    <input type="submit" name="submit" value="Create an account"/>
+</form>
+
+<!--<div>-->
+    <!--<p>{{ error_message }}</p>-->
+<!--</div>-->
+
+{% endif %}
+
+{% endblock %}
